@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+				body{
+					background-color: rgb(240,240,240);
+				}
+        .div1{
+						background: linear-gradient(0.5turn,  #31B0D5, #269ABC);
+            height: 100px;
+            width: 100%;
+            margin:0px;
+            line-height: 100px;
+            text-align: center;
+            font-size: 30px;
+            /* color:rgb(214,141,64); */
+            border-radius: 10px;
+						box-shadow: 1px 2px rgb(166,167,163) ;
+        }
+				.div2{
+					
+					height: 1000px;
+					/* margin-top: 5px; */
+					position: absolute;
+					top: 110px;
+					left: 10px;
+				}
+        .div2-s{
+					background-color: white;
+          /* background-color: #2E6DA4; */
+          width: 220px;
+          height: 600px;
+				  /* color: gray rgb(166,167,163); */
+					margin-top: 10px;
+          box-shadow: 2px 2px 3px 3px #9D9DA1; 
+					line-height: 50px;
+					font-family: "楷体";
+          float: left;
+          /* border-radius: 10px; */
+					/* box-shadow: 1px 5px gray rgb(166,167,163); */
+        }
+        .div3{
+						background-color: white;
+						box-shadow: 2px 1px 3px 3px #9D9DA1; 
+            width: 1190px;
+            height: 600px;
+            position: relative;
+						top: 15px;
+						left: 260px;
+            font-size: 30px;
+            border-radius: 10px;
+        }
+
+        li{
+            list-style-type: none;
+        }
+        #li1,#li2,#li3,#li4 {
+					margin-top: 10px;
+            font-size: 25px;
+            width: 160px;
+						box-shadow: 1px 3px 1px 2px #9D9DA1;
+            display: block;
+            cursor: pointer;
+            border-radius: 20px;
+        }
+				
+    </style>
+</head>
+<body>
+<div>
+   <div class="div1">天亮博客系统
+
+   </div>
+
+   <div class="div2">
+      <div class="div2-s">
+		  <span id="aaa"></span>
+		  <ul id="nav">
+					    <li id="li1" onclick="sligeToggle1()">&nbsp;操作一
+					        <ul style="display: none" >
+					            <li >发日志</li>
+					        </ul>
+					        <div></div>
+					    </li>
+					    <li id="li2" onclick="sligeToggle2()">&nbsp;操作二
+					        <ul style="display: none" >
+					            <li>查看日志</li>
+					        </ul>
+					    </li>
+					    <li id="li3" onclick="sligeToggle3()">&nbsp;操作三
+					        <ul style="display: none" >
+					            <li >修改题库</li>
+					        </ul>
+					    </li>
+					    <li id="li4" onclick="sligeToggle4()">&nbsp;操作四
+					        <ul style="display: none" >
+					            <li >查询题库</li>
+					        </ul>
+					    </li>
+					</ul>
+       </div>
+			<div class="div3">
+
+			</div>
+	 </div>
+
+</div>
+
+</body>
+<script src="js/jquery-3.5.1.js"></script>
+<script>
+ 	$(function () {
+		$.ajax({
+			url:"http://localhost:8080/BlogTest/work2",
+			type: "post",
+			dataType: "json",
+			success:function (user){
+				console.log(user)
+				$(".div2-s #aaa").text('用户: '+user.username);
+			}
+		})
+	})
+</script>
+<script>
+    function sligeToggle1() {
+        $(".div2 #nav #li1 ul").eq(0).slideToggle("normal");
+    }
+    function sligeToggle2() {
+        $(".div2 #nav #li2 ul").eq(0).slideToggle("normal");
+    }
+    function sligeToggle3() {
+        $(".div2 #nav #li3 ul").eq(0).slideToggle("normal");
+    }
+    function sligeToggle4() {
+        $(".div2 #nav #li4 ul").eq(0).slideToggle("normal");
+    }
+    $(".div2 #nav #li1 ul li").click(function (e){
+        e.stopPropagation()
+    })
+    $(".div2 #nav #li2 ul li").click(function (e){
+        e.stopPropagation()
+    })
+    $(".div2 #nav #li3 ul li").click(function (e){
+        e.stopPropagation()
+    })
+    $(".div2 #nav #li4 ul li").click(function (e){
+        e.stopPropagation()
+    })
+    $("#li1 ul li").click(function (){
+		window.location.href="logging.html"
+    })
+    $("#li2 ul li").click(function (){
+		window.location.href="btTable.html"
+    })
+    $("#li3 ul li").click(function (){
+        $(".div3").eq(0).text($(this).text());
+    })
+    $("#li4 ul li").click(function (){
+        $(".div3").eq(0).text($(this).text());
+    })
+</script>
+</html>

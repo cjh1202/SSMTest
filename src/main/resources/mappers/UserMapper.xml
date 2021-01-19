@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tledu.cn.dao.UserMapper">
+
+    <select id="queryAll" resultType="com.tledu.cn.pojo.User">
+        select * from User
+    </select>
+
+    <insert id="insertUser" parameterType="com.tledu.cn.pojo.User">
+        insert into User (username,password,email,name,phone)values (#{username},#{password},#{email},#{name},#{phone})
+    </insert>
+
+</mapper>
+    
